@@ -1,0 +1,24 @@
+  // START: enabled disabled button on checkbox checked unchecked
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const deleteBtn = document.getElementById('delete_btn');
+  
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      deleteBtn.disabled = checkedBoxes.length === 0;
+    });
+  });
+  
+  document.getElementById('selectAll').addEventListener('change', function(event) {
+    checkboxes.forEach(function(checkbox) {
+      checkbox.checked = event.target.checked;
+    });
+    deleteBtn.disabled = !event.target.checked;
+  });  
+  // END: enabled disabled button on checkbox checked unchecked
+  
+//<button type="button" id="delete_btn" class="btn btn-danger btn_delete" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Click to delete" disabled> <i data-feather="trash" class="me-60"></i> </button>
+
+//<div class="form-check d-inline"> <input class="form-check-input" type="checkbox" id="selectAll" style="margin-left: -0.785rem;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Select all"> </div>
+
+//<form action="#" method="post"> <div class="form-check d-inline"> {% csrf_token %} <input class="form-check-input" type="checkbox" name="getselectedval" style="margin-left: -0.785rem;" value="{{i.id}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Select to delete"> </div> </form>
